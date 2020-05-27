@@ -1,0 +1,29 @@
+{
+	"name": "js-video-thumb-image",
+	"version": "1.0.0",
+	"description": "create video thumb image",
+	"main": "index.js",
+	"directories": {
+		"example": "example",
+		"lib": "lib"
+	},
+	"scripts": {
+		"test": "npm run text"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pankajvashisht-ucreate/js-thumb-image.git"
+	},
+	"keywords": [
+		"video",
+		"js",
+		"thumb",
+		"image"
+	],
+	"author": "pankaj vashisht",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/pankajvashisht-ucreate/js-thumb-image/issues"
+	},
+	"homepage": "https://github.com/pankajvashisht-ucreate/js-thumb-image#readme"
+}
