@@ -15,8 +15,8 @@ const VideoToThumb = () => {
   };
   return (
     <>
-      <input type="file" accept="video.*" onChange={createThumb} />
-      <img src={viewImage} alt="img" />
+      <input type="file" accept="video/*" onChange={createThumb} />
+      <img src={viewImage} width="1280px" height="720" alt="img" />
     </>
   );
 };
