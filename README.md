@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/codsi-client.svg)](https://badge.fury.io/js/codsi-client)
 
-Create thumb image from video with input type file
+Create a thumbnail image from video with input type file
 
 ## Browser Support
 
@@ -33,66 +33,69 @@ $ yarn add js-video-thumb-image
 ## Example
 
 ```js
-// used in comman js
+// CommonJS usage
 
 const thumbImage = require('js-video-thumb-image');
 document
-	.getElementsByTagName('input')[0]
-	.addEventListener('change', function (event) {
-		var file = event.target.files[0];
-		createImages(file)
-			.then((data) => {
-				console.log(data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	});
+  .getElementsByTagName('input')[0]
+  .addEventListener('change', function(event) {
+    var file = event.target.files[0];
+    createImages(file)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 // In success data will get object
 
 {
-	File: File; // file data
-	base64Image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAA'; // base64 data
-	error: false; // error false;
-	imageUrl: 'blob:null/86bbb246-47a5-4285-aa0c-2a3532b58d53'; // image url
-	__proto__: Object;
+  File: File; // file data
+  base64Image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAA'; // base64 data
+  error: false; // error false;
+  imageUrl: 'blob:null/86bbb246-47a5-4285-aa0c-2a3532b58d53'; // image url
+  __proto__: Object;
 }
 // asnyc and await
 const getThumbImage = async (image, fileName) => {
-	const { imageUrl, File, error, base64Image } = await thumbImage(
-		image,
-		fileName
-	);
-	if (!error) {
-		// view,  upload
-	}
+  const { imageUrl, File, error, base64Image } = await thumbImage(
+    image,
+    fileName
+  );
+  if (!error) {
+    // view,  upload
+  }
 };
 ```
 
 ## using React and vue
 
 ```js
-import React from 'react';
+import React, { useState } from 'react';
 import thumbImage from 'js-video-thumb-image';
-const thumb = () => {
-	const [file, setFile] = React.useState([]);
-	const [viewImage, setViewImage] = React.useState();
-	const createThumb = async (event) => {
-		const { File, error, imageUrl } = await thumbImage(
-			event.target.files[0],
-			'mythumbimage.png'
-		);
-		if (!error) {
-			setViewImage(imageUrl);
-		}
-	};
-	return (
-		<>
-			<input type='file' accept='video.*' onChange={createThumb} />
-			<img src={viewImage} alt='img' />
-		</>
-	);
+
+const VideoToThumb = () => {
+  const [viewImage, setViewImage] = useState('');
+  const createThumb = async event => {
+    const { File, error, imageUrl } = await thumbImage(
+      event.target.files[0],
+      'mythumbimage.png'
+    );
+    // console.log('Use File object', File);
+    if (!error) {
+      setViewImage(imageUrl);
+    }
+  };
+  return (
+    <>
+      <input type="file" accept="video/*" onChange={createThumb} />
+      <img src={viewImage} width="1280px" height="720" alt="img" />
+    </>
+  );
 };
+
+export default VideoToThumb;
 ```
 
 ## License
